@@ -2,70 +2,10 @@ import streamlit as st
 from streamlit_ace import st_ace
 from executor import execute_code
 import html
+import options
 
 # Set the page configuration to wide layout
 st.set_page_config(layout="wide")
-
-# List of available themes for Ace Editor
-ace_themes = [
-    'chrome', 'clouds', 'crimson_editor', 'dawn', 'dreamweaver',
-    'eclipse', 'github', 'iplastic', 'solarized_light', 'textmate',
-    'tomorrow', 'xcode', 'kuroir', 'katzenmilch', 'sqlserver',
-    'ambiance', 'chaos', 'clouds_midnight', 'cobalt', 'gruvbox',
-    'idle_fingers', 'kr_theme', 'merbivore', 'merbivore_soft',
-    'mono_industrial', 'monokai', 'pastel_on_dark', 'solarized_dark',
-    'terminal', 'tomorrow_night', 'tomorrow_night_blue',
-    'tomorrow_night_bright', 'tomorrow_night_eighties', 'twilight',
-    'dracula', 'gob', 'vibrant_ink'
-]
-
-# List of programming languages supported by Ace Editor
-ace_languages = [
-    'python', 'c_cpp', 'java', 'javascript', 'ruby', 'rust', 'go',
-    'csharp', 'kotlin', 'swift', 'php', 'perl', 'r', 'typescript',
-    'sql', 'html', 'css', 'markdown', 'json', 'xml', 'yaml', 'sh'
-]
-
-# Mapping from Ace Editor language names to execution function languages
-execution_languages = {
-    'python': 'python',
-    'c_cpp': 'c_cpp',
-    'java': 'java',
-    'javascript': 'javascript',
-    # Add other mappings as needed
-}
-
-# Default code snippets for each language
-default_code_snippets = {
-    'python': "print('Hello, Streamlit!')",
-    'c_cpp': """#include <iostream>
-
-int main() {
-    std::cout << "Hello, C++!" << std::endl;
-    return 0;
-}
-""",
-    'java': """public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello, Java!");
-    }
-}
-""",
-    'javascript': "console.log('Hello, JavaScript!');",
-    'ruby': "puts 'Hello, Ruby!'",
-    'go': """package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Hello, Go!")
-}
-""",
-    # Add default code for other languages as needed
-}
-
-# List of available keybindings for Ace Editor
-ace_keybindings = ['vscode', 'ace', 'vim', 'emacs', 'sublime']
 
 def main():
     st.title("Coding Grounds")
@@ -74,14 +14,14 @@ def main():
     st.sidebar.header("Settings")
 
     # Select a programming language
-    language = st.sidebar.selectbox("Select Language", ace_languages)
+    language = st.sidebar.selectbox("Select Language", options.ace_languages)
 
     # Select an Ace Editor theme
-    theme = st.sidebar.selectbox("Select Theme", ace_themes, index=ace_themes.index('dracula'))
+    theme = st.sidebar.selectbox("Select Theme", options.ace_themes, index=options.ace_themes.index('dracula'))
 
     # Select an Ace Editor keybinding
-    keybinding = st.sidebar.selectbox("Select Keybinding", ace_keybindings)
-
+    # keybinding = st.sidebar.selectbox("Select Keybinding", options.ace_keybindings, index=options.ace_keybindings.index('ace'))
+    
     # Font size selection
     st.sidebar.subheader("Font Size")
     font_size_col1, font_size_col2 = st.sidebar.columns([3, 1])
@@ -122,7 +62,7 @@ def main():
 
     # Initialize session state for code and output
     if 'code' not in st.session_state or st.session_state.language != language:
-        st.session_state.code = default_code_snippets.get(language, '')
+        st.session_state.code = options.default_code_snippets.get(language, '')
         st.session_state.language = language  # Store current language in session state
 
     if 'output' not in st.session_state:
@@ -162,7 +102,7 @@ def main():
             value=st.session_state.code,
             language=language,
             theme=theme,
-            keybinding=keybinding,
+            # keybinding=keybinding,
             key='ace-editor',  # Simplified key to prevent unnecessary re-initialization
             auto_update=True,
             height=int(editor_height),
@@ -179,7 +119,7 @@ def main():
     # Button to run the code
     if st.button('Run'):
         # Map Ace Editor language to execution language
-        exec_language = execution_languages.get(language)
+        exec_language = options.execution_languages.get(language)
         if exec_language:
             st.session_state.output = execute_code(st.session_state.code, exec_language)
         else:
