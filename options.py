@@ -57,4 +57,4 @@ func main() {
 }
 
 # List of available keybindings for Ace Editor
-ace_keybindings = ['ace', 'vim', 'emacs', 'sublime']
+ace_keybindings = ['vscode', 'ace', 'vim', 'emacs', 'sublime']
