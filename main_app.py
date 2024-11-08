@@ -10,6 +10,44 @@ st.set_page_config(layout="wide")
 def main():
     st.title("Coding Grounds")
 
+    # Initialize session state variables if not set
+    # Font size
+    if 'font_size_slider' not in st.session_state:
+        st.session_state['font_size_slider'] = 14
+    if 'font_size_input' not in st.session_state:
+        st.session_state['font_size_input'] = 14
+
+    # Editor height
+    if 'editor_height_slider' not in st.session_state:
+        st.session_state['editor_height_slider'] = 600
+    if 'editor_height_input' not in st.session_state:
+        st.session_state['editor_height_input'] = 600
+
+    # Editor width
+    if 'editor_width_slider' not in st.session_state:
+        st.session_state['editor_width_slider'] = 800
+    if 'editor_width_input' not in st.session_state:
+        st.session_state['editor_width_input'] = 800
+
+    # Callback functions for synchronization
+    def font_size_slider_changed():
+        st.session_state.font_size_input = st.session_state.font_size_slider
+
+    def font_size_input_changed():
+        st.session_state.font_size_slider = st.session_state.font_size_input
+
+    def editor_height_slider_changed():
+        st.session_state.editor_height_input = st.session_state.editor_height_slider
+
+    def editor_height_input_changed():
+        st.session_state.editor_height_slider = st.session_state.editor_height_input
+
+    def editor_width_slider_changed():
+        st.session_state.editor_width_input = st.session_state.editor_width_slider
+
+    def editor_width_input_changed():
+        st.session_state.editor_width_slider = st.session_state.editor_width_input
+
     # Sidebar options
     st.sidebar.header("Settings")
 
@@ -24,11 +62,74 @@ def main():
 
     # Font size selection
     st.sidebar.subheader("Font Size")
-    font_size = st.sidebar.slider("Font Size", min_value=10, max_value=24, value=14, key='font_size_slider')
+    font_size_col1, font_size_col2 = st.sidebar.columns([3, 1])
+    with font_size_col1:
+        st.sidebar.slider(
+            "Font Size",
+            min_value=10,
+            max_value=24,
+            key='font_size_slider',
+            on_change=font_size_slider_changed,
+        )
+    with font_size_col2:
+        st.sidebar.number_input(
+            label="",
+            min_value=10,
+            max_value=24,
+            key='font_size_input',
+            label_visibility="collapsed",
+            step=1,
+            on_change=font_size_input_changed,
+        )
 
     # Editor height selection
     st.sidebar.subheader("Editor Height")
-    editor_height = st.sidebar.slider("Editor Height", min_value=200, max_value=1000, value=600, key='editor_height_slider')
+    editor_height_col1, editor_height_col2 = st.sidebar.columns([3, 1])
+    with editor_height_col1:
+        st.sidebar.slider(
+            "Editor Height",
+            min_value=200,
+            max_value=1000,
+            key='editor_height_slider',
+            on_change=editor_height_slider_changed,
+        )
+    with editor_height_col2:
+        st.sidebar.number_input(
+            label="",
+            min_value=200,
+            max_value=1000,
+            key='editor_height_input',
+            label_visibility="collapsed",
+            step=50,
+            on_change=editor_height_input_changed,
+        )
+
+    # Editor width selection
+    st.sidebar.subheader("Editor Width")
+    editor_width_col1, editor_width_col2 = st.sidebar.columns([3, 1])
+    with editor_width_col1:
+        st.sidebar.slider(
+            "Editor Width",
+            min_value=400,
+            max_value=1600,
+            key='editor_width_slider',
+            on_change=editor_width_slider_changed,
+        )
+    with editor_width_col2:
+        st.sidebar.number_input(
+            label="",
+            min_value=400,
+            max_value=1600,
+            key='editor_width_input',
+            label_visibility="collapsed",
+            step=100,
+            on_change=editor_width_input_changed,
+        )
+
+    # Get the values for the editor settings
+    font_size = st.session_state.font_size_slider
+    editor_height = st.session_state.editor_height_slider
+    editor_width = st.session_state.editor_width_slider
 
     # Initialize session state for code and output
     if 'code' not in st.session_state or st.session_state.language != language:
@@ -40,18 +141,18 @@ def main():
 
     # Add custom CSS to adjust the width of the Ace Editor and style the output terminal
     st.markdown(
-        """
+        f"""
         <style>
         /* Adjust the width of the Ace Editor container */
-        .ace_editor {
-            width: 100% !important;
-        }
+        .ace_editor {{
+            width: {int(editor_width)}px !important;
+        }}
         /* Remove padding/margin from the code editor */
-        .st-ace {
+        .st-ace {{
             padding: 0;
-        }
+        }}
         /* Style for the terminal-like output */
-        .terminal {
+        .terminal {{
             background-color: #1e1e1e;
             color: #d4d4d4;
             padding: 10px;
@@ -60,7 +161,7 @@ def main():
             white-space: pre-wrap;
             overflow: auto;
             height: 300px;
-        }
+        }}
         </style>
         """,
         unsafe_allow_html=True,
