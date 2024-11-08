@@ -20,45 +20,15 @@ def main():
     theme = st.sidebar.selectbox("Select Theme", options.ace_themes, index=options.ace_themes.index('dracula'))
 
     # Select an Ace Editor keybinding
-    # keybinding = st.sidebar.selectbox("Select Keybinding", options.ace_keybindings, index=options.ace_keybindings.index('ace'))
-    
+    keybinding = st.sidebar.selectbox("Select Keybinding", options.ace_keybindings, index=options.ace_keybindings.index('ace'))
+
     # Font size selection
     st.sidebar.subheader("Font Size")
-    font_size_col1, font_size_col2 = st.sidebar.columns([3, 1])
-    with font_size_col1:
-        font_size = st.slider("Font Size", min_value=10, max_value=24, value=14, key='font_size_slider')
-    with font_size_col2:
-        font_size_input = st.number_input(
-            label=" ",
-            min_value=10,
-            max_value=24,
-            value=font_size,
-            key='font_size_input',
-            label_visibility="collapsed",
-            step=1
-        )
-    # Synchronize slider and input
-    if font_size != font_size_input:
-        font_size = font_size_input
+    font_size = st.sidebar.slider("Font Size", min_value=10, max_value=24, value=14, key='font_size_slider')
 
     # Editor height selection
     st.sidebar.subheader("Editor Height")
-    editor_height_col1, editor_height_col2 = st.sidebar.columns([3, 1])
-    with editor_height_col1:
-        editor_height = st.slider("Editor Height", min_value=200, max_value=1000, value=600, key='editor_height_slider')
-    with editor_height_col2:
-        editor_height_input = st.number_input(
-            label=" ",
-            min_value=200,
-            max_value=1000,
-            value=editor_height,
-            key='editor_height_input',
-            label_visibility="collapsed",
-            step=50
-        )
-    # Synchronize slider and input
-    if editor_height != editor_height_input:
-        editor_height = editor_height_input
+    editor_height = st.sidebar.slider("Editor Height", min_value=200, max_value=1000, value=600, key='editor_height_slider')
 
     # Initialize session state for code and output
     if 'code' not in st.session_state or st.session_state.language != language:
@@ -102,12 +72,12 @@ def main():
             value=st.session_state.code,
             language=language,
             theme=theme,
-            # keybinding=keybinding,
-            key='ace-editor',  # Simplified key to prevent unnecessary re-initialization
+            keybinding=keybinding,
+            key='ace-editor',
             auto_update=True,
             height=int(editor_height),
             font_size=int(font_size),
-            wrap=True,  # Enable code wrapping
+            wrap=True,
             show_gutter=True,
             show_print_margin=False,
         )
@@ -119,7 +89,7 @@ def main():
     # Button to run the code
     if st.button('Run'):
         # Map Ace Editor language to execution language
-        exec_language = options.execution_languages.get(language)
+        exec_language = options.execution_languages.get(language, None)
         if exec_language:
             st.session_state.output = execute_code(st.session_state.code, exec_language)
         else:
