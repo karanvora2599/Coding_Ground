@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ace Editor Component</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+    <script src="https://unpkg.com/streamlit-component-lib@1.1.0/dist/index.js"></script>
+</head>
+<body>
+    <div id="editor" style="height: 300px; width: 100%;"></div>
+    <script>
+        const editor = ace.edit("editor");
+        const language = {{ language | tojson }};
+        const theme = {{ theme | tojson }};
+        const content = {{ content | tojson }};
+
+        editor.setTheme("ace/theme/" + theme);
+        editor.session.setMode("ace/mode/" + language);
+        editor.setValue(content, -1);  // Move cursor to start
+
+        // Send editor content to Streamlit backend
+        function sendEditorContent() {
+            const editorContent = editor.getValue();
+            Streamlit.setComponentValue(editorContent);
+        }
+
+        editor.on('change', sendEditorContent);
+
+        // Initialize component
+        Streamlit.setComponentReady();
+        Streamlit.setFrameHeight(300);
+    </script>
+</body>
+</html>
