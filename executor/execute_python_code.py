@@ -1,5 +1,3 @@
-# executor/execute_python_code.py
-
 import io
 import contextlib
 import sys
