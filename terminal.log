@@ -1,0 +1,27 @@
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://172.20.155.46:8501
+
+/usr/bin/x-www-browser: 12: xdg-settings: not found
+2024/11/10 15:14:04.383246 cmd_run.go:1285: WARNING: cannot start document portal: dial unix /run/user/1000/bus: connect: no such file or directory
+Opening in existing browser session.
+[8579:8579:0100/000000.947157:ERROR:zygote_linux.cc(678)] write: Broken pipe (32)
+2024-11-10 15:14:06.076 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:06.084 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:06.086 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:07.237 ComponentRequestHandler: GET /home/camelion/Documents/Coding_Ground/.venv/lib/python3.12/site-packages/streamlit_ace/frontend/build/keybinding-ace.js read error
+Traceback (most recent call last):
+  File "/home/camelion/Documents/Coding_Ground/.venv/lib/python3.12/site-packages/streamlit/web/server/component_request_handler.py", line 62, in get
+    with open(abspath, "rb") as file:
+         ^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/camelion/Documents/Coding_Ground/.venv/lib/python3.12/site-packages/streamlit_ace/frontend/build/keybinding-ace.js'
+2024-11-10 15:14:15.724 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:15.727 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:15.729 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:16.400 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:16.402 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:16.403 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:17.732 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:17.735 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
+2024-11-10 15:14:17.741 `label` got an empty value. This is discouraged for accessibility reasons and may be disallowed in the future by raising an exception. Please provide a non-empty label and hide it with label_visibility if needed.
