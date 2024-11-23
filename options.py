@@ -12,10 +12,14 @@ ace_themes = [
 ]
 
 # List of programming languages supported by Ace Editor
+# ace_languages = [
+#     'python', 'c_cpp', 'java', 'javascript', 'ruby', 'rust', 'go',
+#     'csharp', 'kotlin', 'swift', 'php', 'perl', 'r', 'typescript',
+#     'sql', 'html', 'css', 'markdown', 'json', 'xml', 'yaml', 'sh'
+# ]
+
 ace_languages = [
-    'python', 'c_cpp', 'java', 'javascript', 'ruby', 'rust', 'go',
-    'csharp', 'kotlin', 'swift', 'php', 'perl', 'r', 'typescript',
-    'sql', 'html', 'css', 'markdown', 'json', 'xml', 'yaml', 'sh'
+    'python', 'c_cpp'
 ]
 
 # Mapping from Ace Editor language names to execution function languages
