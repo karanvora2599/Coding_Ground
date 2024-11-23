@@ -3,8 +3,9 @@ from streamlit_ace import st_ace
 from executor import execute_code
 import html
 import options
-import os
-import json
+
+# Import functions from overlay.py
+from questions_overlay.overlay import load_questions, get_selected_question, display_question_overlay, display_question
 
 # Set the page configuration to wide layout
 st.set_page_config(layout="wide")
@@ -38,28 +39,32 @@ def main():
     def editor_height_input_changed():
         st.session_state.editor_height_slider = st.session_state.editor_height_input
 
-    # Load questions from the 'questions' folder
-    def load_questions():
-        questions_dir = 'questions'
-        questions = []
-        for filename in os.listdir(questions_dir):
-            if filename.endswith('.json'):
-                with open(os.path.join(questions_dir, filename), 'r') as f:
-                    question = json.load(f)
-                    questions.append(question)
-        return sorted(questions, key=lambda x: x['id'])
-
+    # Load questions using the function from overlay.py
     questions = load_questions()
 
-    # Initialize session state for selected question ID
-    if 'selected_question_id' not in st.session_state:
-        st.session_state.selected_question_id = questions[0]['id'] if questions else None
+    # Display the question overlay (includes difficulty and question selection)
+    display_question_overlay(questions)
+
+    # Get the selected question using the function from overlay.py
+    selected_question = get_selected_question(st.session_state.selected_question_id, questions)
+
+    # Initialize session state for code and output
+    if 'code' not in st.session_state or st.session_state.get('language') != st.session_state.get('prev_language'):
+        # If there's starter code from the question, use it
+        if selected_question and 'starter_code' in selected_question:
+            st.session_state.code = selected_question['starter_code'].get(st.session_state.get('language'), options.default_code_snippets.get(st.session_state.get('language'), ''))
+        else:
+            st.session_state.code = options.default_code_snippets.get(st.session_state.get('language'), '')
+        st.session_state.prev_language = st.session_state.get('language')  # Store current language in session state
+
+    if 'output' not in st.session_state:
+        st.session_state.output = ''
 
     # Sidebar options
     st.sidebar.header("Settings")
 
     # Select a programming language
-    language = st.sidebar.selectbox("Select Language", options.ace_languages)
+    st.session_state.language = st.sidebar.selectbox("Select Language", options.ace_languages)
 
     # Select an Ace Editor theme
     theme = st.sidebar.selectbox("Select Theme", options.ace_themes, index=options.ace_themes.index('dracula'))
@@ -115,52 +120,15 @@ def main():
     font_size = st.session_state.font_size_slider
     editor_height = st.session_state.editor_height_slider
 
-    # Sidebar options for questions
-    st.sidebar.header("Questions")
-
-    # Toggle to show/hide the question overlay
-    show_question = st.sidebar.checkbox("Show Question", value=False)
-
-    # Select a question
-    if questions:
-        # Map titles to question IDs
-        title_to_id = {f"{q['id']}. {q['title']} ({q['difficulty']})": q['id'] for q in questions}
-        question_titles = list(title_to_id.keys())
-        selected_index = next((i for i, q in enumerate(questions) if q['id'] == st.session_state.selected_question_id), 0)
-        selected_question_title = st.sidebar.selectbox("Select Question", question_titles, index=selected_index)
-        st.session_state.selected_question_id = title_to_id[selected_question_title]
-    else:
-        st.sidebar.write("No questions available.")
-
-    # Function to get the selected question
-    def get_selected_question():
-        for q in questions:
-            if q['id'] == st.session_state.selected_question_id:
-                return q
-        return None
-
-    # Initialize session state for code and output
-    if 'code' not in st.session_state or st.session_state.language != language:
-        # If there's starter code from the question, use it
-        selected_question = get_selected_question()
-        if selected_question and 'starter_code' in selected_question:
-            st.session_state.code = selected_question['starter_code'].get(language, options.default_code_snippets.get(language, ''))
-        else:
-            st.session_state.code = options.default_code_snippets.get(language, '')
-        st.session_state.language = language  # Store current language in session state
-
-    if 'output' not in st.session_state:
-        st.session_state.output = ''
-
-    # Use st.columns to create a layout
-    if show_question:
+    # Adjust the layout based on whether the question overlay is shown
+    if st.session_state.get('show_question', False):
         col1, col2 = st.columns([3, 2])
 
         # Code editor and run button in the first column
         with col1:
             code = st_ace(
                 value=st.session_state.code,
-                language=language,
+                language=st.session_state.language,
                 theme=theme,
                 keybinding=keybinding,
                 key='ace-editor',
@@ -179,11 +147,11 @@ def main():
             # Button to run the code
             if st.button('Run'):
                 # Map Ace Editor language to execution language
-                exec_language = options.execution_languages.get(language, None)
+                exec_language = options.execution_languages.get(st.session_state.language, None)
                 if exec_language:
                     st.session_state.output = execute_code(st.session_state.code, exec_language)
                 else:
-                    st.session_state.output = f"Execution for {language} is not supported yet."
+                    st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
 
             # Display the output in a terminal-like box
             st.subheader("Output")
@@ -192,27 +160,12 @@ def main():
 
         # Display the question in the second column
         with col2:
-            selected_question = get_selected_question()
-            if selected_question:
-                st.markdown(f"### {selected_question['id']}. {selected_question['title']}")
-                st.markdown(f"**Difficulty:** {selected_question['difficulty']}")
-                st.markdown(selected_question['description'])
-                st.markdown("#### Examples:")
-                for ex in selected_question['examples']:
-                    st.markdown(f"**Input:** {ex['input']}")
-                    st.markdown(f"**Output:** {ex['output']}")
-                    if 'explanation' in ex:
-                        st.markdown(f"**Explanation:** {ex['explanation']}")
-                st.markdown("#### Constraints:")
-                for constraint in selected_question['constraints']:
-                    st.markdown(f"- {constraint}")
-            else:
-                st.error("Selected question not found.")
+            display_question(selected_question)
     else:
         # Full-width code editor when the question is not displayed
         code = st_ace(
             value=st.session_state.code,
-            language=language,
+            language=st.session_state.language,
             theme=theme,
             keybinding=keybinding,
             key='ace-editor',
@@ -231,11 +184,11 @@ def main():
         # Button to run the code
         if st.button('Run'):
             # Map Ace Editor language to execution language
-            exec_language = options.execution_languages.get(language, None)
+            exec_language = options.execution_languages.get(st.session_state.language, None)
             if exec_language:
                 st.session_state.output = execute_code(st.session_state.code, exec_language)
             else:
-                st.session_state.output = f"Execution for {language} is not supported yet."
+                st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
 
         # Display the output in a terminal-like box
         st.subheader("Output")

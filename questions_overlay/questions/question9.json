@@ -1,0 +1,24 @@
+{
+    "id": 9,
+    "title": "Binary Search Tree Iterator",
+    "difficulty": "Medium",
+    "description": "Implement the `BSTIterator` class that represents an iterator over the in-order traversal of a binary search tree (BST).",
+    "examples": [
+        {
+            "input": "root = [7,3,15,null,null,9,20]",
+            "operations": ["BSTIterator", "next", "next", "hasNext", "next", "hasNext", "next", "hasNext"],
+            "parameters": [[], [], [], [], [], [], [], []],
+            "output": [null, 3, 7, true, 9, true, 15, true]
+        }
+    ],
+    "constraints": [
+        "The number of nodes in the tree is in the range [1, 10^5].",
+        "0 <= Node.val <= 10^6",
+        "At most 10^5 calls will be made to `next()` and `hasNext()`."
+    ],
+    "starter_code": {
+        "python": "class BSTIterator:\n    def __init__(self, root):\n        pass\n\n    def next(self):\n        pass\n\n    def hasNext(self):\n        pass",
+        "c_cpp": "// Write your code here",
+        "java": "// Write your code here"
+    }
+}

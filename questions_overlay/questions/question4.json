@@ -1,0 +1,25 @@
+{
+    "id": 4,
+    "title": "Valid Parentheses",
+    "difficulty": "Easy",
+    "description": "Given a string `s` containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.",
+    "examples": [
+        {
+            "input": "s = '()'",
+            "output": "true"
+        },
+        {
+            "input": "s = '([)]'",
+            "output": "false"
+        }
+    ],
+    "constraints": [
+        "1 <= s.length <= 10^4",
+        "s consists of parentheses only '()[]{}'."
+    ],
+    "starter_code": {
+        "python": "# Write your code here",
+        "c_cpp": "// Write your code here",
+        "java": "// Write your code here"
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "id": 12,
+    "title": "N-Queens",
+    "difficulty": "Hard",
+    "description": "The `n`-queens puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other. Given an integer `n`, return all distinct solutions to the `n`-queens puzzle.",
+    "examples": [
+        {
+            "input": "n = 4",
+            "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]"
+        }
+    ],
+    "constraints": [
+        "1 <= n <= 9"
+    ],
+    "starter_code": {
+        "python": "# Write your code here",
+        "c_cpp": "// Write your code here",
+        "java": "// Write your code here"
+    }
+}

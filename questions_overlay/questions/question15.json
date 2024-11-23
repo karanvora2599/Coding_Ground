@@ -1,0 +1,25 @@
+{
+    "id": 15,
+    "title": "Word Ladder II",
+    "difficulty": "Hard",
+    "description": "Given two words, `beginWord` and `endWord`, and a dictionary of words `wordList`, return all the shortest transformation sequences from `beginWord` to `endWord`.",
+    "examples": [
+        {
+            "input": "beginWord = 'hit', endWord = 'cog', wordList = ['hot','dot','dog','lot','log','cog']",
+            "output": "[['hit','hot','dot','dog','cog'], ['hit','hot','lot','log','cog']]",
+            "explanation": "Both sequences are the shortest."
+        }
+    ],
+    "constraints": [
+        "1 <= wordList.length <= 5000",
+        "wordList[i] consists of lowercase English letters.",
+        "beginWord and endWord consist of lowercase English letters.",
+        "beginWord != endWord",
+        "All strings in wordList are unique."
+    ],
+    "starter_code": {
+        "python": "# Write your code here",
+        "c_cpp": "// Write your code here",
+        "java": "// Write your code here"
+    }
+}
