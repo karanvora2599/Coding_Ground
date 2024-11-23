@@ -1,0 +1,28 @@
+{
+    "id": 18,
+    "title": "Rotate Array",
+    "difficulty": "Medium",
+    "description": "Given an array, rotate the array to the right by `k` steps, where `k` is non-negative.",
+    "examples": [
+        {
+            "input": "nums = [1,2,3,4,5,6,7], k = 3",
+            "output": "[5,6,7,1,2,3,4]",
+            "explanation": "Array is rotated by 3 steps to the right."
+        },
+        {
+            "input": "nums = [-1,-100,3,99], k = 2",
+            "output": "[3,99,-1,-100]",
+            "explanation": "Array is rotated by 2 steps to the right."
+        }
+    ],
+    "constraints": [
+        "1 <= nums.length <= 10^5",
+        "-2^31 <= nums[i] <= 2^31 - 1",
+        "0 <= k <= 10^5"
+    ],
+    "starter_code": {
+        "python": "# Write your code here",
+        "c_cpp": "// Write your code here",
+        "java": "// Write your code here"
+    }
+}

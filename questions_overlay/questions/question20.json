@@ -1,0 +1,28 @@
+{
+    "id": 20,
+    "title": "Container With Most Water",
+    "difficulty": "Medium",
+    "description": "You are given an integer array `height` of length `n`. Find two lines that together with the x-axis form a container that holds the most water.",
+    "examples": [
+        {
+            "input": "height = [1,8,6,2,5,4,8,3,7]",
+            "output": "49",
+            "explanation": "The vertical lines at indices 1 and 8 form the container with maximum water."
+        },
+        {
+            "input": "height = [1,1]",
+            "output": "1",
+            "explanation": "The only possible container has an area of 1."
+        }
+    ],
+    "constraints": [
+        "n == height.length",
+        "2 <= n <= 10^5",
+        "0 <= height[i] <= 10^4"
+    ],
+    "starter_code": {
+        "python": "# Write your code here",
+        "c_cpp": "// Write your code here",
+        "java": "// Write your code here"
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "id": 17,
+    "title": "Majority Element",
+    "difficulty": "Easy",
+    "description": "Given an array `nums` of size `n`, return the majority element. The majority element is the element that appears more than ⌊n / 2⌋ times.",
+    "examples": [
+        {
+            "input": "nums = [3,2,3]",
+            "output": "3",
+            "explanation": "3 is the majority element as it appears 2 times."
+        },
+        {
+            "input": "nums = [2,2,1,1,1,2,2]",
+            "output": "2",
+            "explanation": "2 is the majority element as it appears 4 times."
+        }
+    ],
+    "constraints": [
+        "1 <= nums.length <= 5 * 10^4",
+        "-10^9 <= nums[i] <= 10^9"
+    ],
+    "starter_code": {
+        "python": "# Write your code here",
+        "c_cpp": "// Write your code here",
+        "java": "// Write your code here"
+    }
+}

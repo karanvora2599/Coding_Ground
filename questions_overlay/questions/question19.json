@@ -1,0 +1,26 @@
+{
+    "id": 19,
+    "title": "Unique Paths",
+    "difficulty": "Medium",
+    "description": "A robot is located at the top-left corner of an `m x n` grid. The robot can only move either down or right at any point. Calculate how many unique paths exist to reach the bottom-right corner.",
+    "examples": [
+        {
+            "input": "m = 3, n = 7",
+            "output": "28",
+            "explanation": "There are 28 unique paths to reach the bottom-right corner."
+        },
+        {
+            "input": "m = 3, n = 2",
+            "output": "3",
+            "explanation": "There are 3 unique paths."
+        }
+    ],
+    "constraints": [
+        "1 <= m, n <= 100"
+    ],
+    "starter_code": {
+        "python": "# Write your code here",
+        "c_cpp": "// Write your code here",
+        "java": "// Write your code here"
+    }
+}
