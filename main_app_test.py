@@ -7,8 +7,36 @@ import options
 # Import functions from overlay.py
 from questions_overlay.overlay import load_questions, get_selected_question, display_question_overlay, display_question
 
+from javascript.features import inject_javascript
+
 # Set the page configuration to wide layout
 st.set_page_config(layout="wide")
+
+def inject_tab_switch_javascript():
+    # JavaScript code to update query parameters on tab visibility change
+    js_code = """
+    <script>
+    document.addEventListener('visibilitychange', function() {
+        let newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        if (document.hidden) {
+            // Add query parameter when tab is hidden
+            newUrl += '?tab_switched=true';
+        } else {
+            // Remove query parameter when tab is visible
+            newUrl += '';
+        }
+        window.history.replaceState({}, '', newUrl);
+    });
+    </script>
+    """
+    st.markdown(js_code, unsafe_allow_html=True)
+
+def check_tab_switch():
+    query_params = st.experimental_get_query_params()
+    if 'tab_switched' in query_params:
+        st.warning("You have switched tabs! Please stay focused.")
+        # Optionally, remove the query parameter after showing the warning
+        st.experimental_set_query_params()
 
 def main():
     st.title("Coding Grounds")
@@ -300,6 +328,10 @@ def main():
         """,
         unsafe_allow_html=True,
     )
+    
+    inject_javascript()
+    
+    check_tab_switch()
 
 if __name__ == "__main__":
     main()
