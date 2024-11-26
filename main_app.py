@@ -144,14 +144,37 @@ def main():
             if code is not None:
                 st.session_state.code = code
 
-            # Button to run the code
-            if st.button('Run'):
-                # Map Ace Editor language to execution language
-                exec_language = options.execution_languages.get(st.session_state.language, None)
-                if exec_language:
-                    st.session_state.output = execute_code(st.session_state.code, exec_language)
-                else:
-                    st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
+            # Create columns for the Run and Test buttons
+            button_col1, button_col2 = st.columns(2)
+            with button_col1:
+                if st.button('Run'):
+                    # Map Ace Editor language to execution language
+                    exec_language = options.execution_languages.get(st.session_state.language, None)
+                    if exec_language:
+                        st.session_state.output = execute_code(st.session_state.code, exec_language)
+                    else:
+                        st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
+            with button_col2:
+                if st.button('Test'):
+                    # Map Ace Editor language to execution language
+                    exec_language = options.execution_languages.get(st.session_state.language, None)
+                    if exec_language:
+                        # Get test cases from the selected question
+                        test_cases = selected_question.get('test_cases', [])
+                        results = execute_code(st.session_state.code, exec_language, test_cases=test_cases)
+                        # Display test results
+                        st.subheader("Test Results")
+                        for res in results:
+                            if res['status'] == 'Passed':
+                                st.success(f"Test Case {res['test_case']}: Passed")
+                            elif res['status'] == 'Failed':
+                                st.error(f"Test Case {res['test_case']}: Failed")
+                                st.error(f"Expected Output: {res['expected']}, Actual Output: {res['actual']}")
+                            else:
+                                st.error(f"Test Case {res['test_case']}: Error")
+                                st.error(f"Error Message: {res['message']}")
+                    else:
+                        st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
 
             # Display the output in a terminal-like box
             st.subheader("Output")
@@ -181,14 +204,37 @@ def main():
         if code is not None:
             st.session_state.code = code
 
-        # Button to run the code
-        if st.button('Run'):
-            # Map Ace Editor language to execution language
-            exec_language = options.execution_languages.get(st.session_state.language, None)
-            if exec_language:
-                st.session_state.output = execute_code(st.session_state.code, exec_language)
-            else:
-                st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
+        # Create columns for the Run and Test buttons
+        button_col1, button_col2 = st.columns(2)
+        with button_col1:
+            if st.button('Run'):
+                # Map Ace Editor language to execution language
+                exec_language = options.execution_languages.get(st.session_state.language, None)
+                if exec_language:
+                    st.session_state.output = execute_code(st.session_state.code, exec_language)
+                else:
+                    st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
+        with button_col2:
+            if st.button('Test'):
+                # Map Ace Editor language to execution language
+                exec_language = options.execution_languages.get(st.session_state.language, None)
+                if exec_language:
+                    # Get test cases from the selected question
+                    test_cases = selected_question.get('test_cases', [])
+                    results = execute_code(st.session_state.code, exec_language, test_cases=test_cases)
+                    # Display test results
+                    st.subheader("Test Results")
+                    for res in results:
+                        if res['status'] == 'Passed':
+                            st.success(f"Test Case {res['test_case']}: Passed")
+                        elif res['status'] == 'Failed':
+                            st.error(f"Test Case {res['test_case']}: Failed")
+                            st.error(f"Expected Output: {res['expected']}, Actual Output: {res['actual']}")
+                        else:
+                            st.error(f"Test Case {res['test_case']}: Error")
+                            st.error(f"Error Message: {res['message']}")
+                else:
+                    st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
 
         # Display the output in a terminal-like box
         st.subheader("Output")

@@ -11,9 +11,19 @@ def load_questions():
     questions = []
     for filename in os.listdir(questions_dir):
         if filename.endswith('.json'):
-            with open(os.path.join(questions_dir, filename), 'r') as f:
-                question = json.load(f)
-                questions.append(question)
+            filepath = os.path.join(questions_dir, filename)
+            try:
+                with open(filepath, 'r') as f:
+                    question = json.load(f)
+                    questions.append(question)
+            except json.JSONDecodeError as e:
+                # Display a warning message and skip the file
+                st.warning(f"Warning: Failed to load {filename} due to JSON error: {e}")
+                continue
+            except Exception as e:
+                # Handle any other exceptions
+                st.warning(f"Warning: An error occurred while loading {filename}: {e}")
+                continue
     return sorted(questions, key=lambda x: x['id'])
 
 def get_selected_question(selected_question_id, questions):
