@@ -142,10 +142,14 @@ def main():
 
             # Update session_state.code if code is not None
             if code is not None:
-                st.session_state.code = code
+                if code != st.session_state.get('code', ''):
+                    st.session_state.code = code
+                    st.session_state.test_summary = ''
+                else:
+                    st.session_state.code = code
 
             # Create columns for the Run and Test buttons
-            button_col1, button_col2 = st.columns(2)
+            button_col1, button_col2 = st.columns([1, 2])
             with button_col1:
                 if st.button('Run'):
                     # Map Ace Editor language to execution language
@@ -155,13 +159,19 @@ def main():
                     else:
                         st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
             with button_col2:
-                if st.button('Test'):
+                test_button = st.button('Test')
+                if test_button:
                     # Map Ace Editor language to execution language
                     exec_language = options.execution_languages.get(st.session_state.language, None)
                     if exec_language:
                         # Get test cases from the selected question
                         test_cases = selected_question.get('test_cases', [])
                         results = execute_code(st.session_state.code, exec_language, test_cases=test_cases)
+                        # Count passed test cases
+                        passed_tests = sum(1 for res in results if res['status'] == 'Passed')
+                        total_tests = len(results)
+                        # Store the test summary in session state
+                        st.session_state.test_summary = f"Tests Passed: {passed_tests}/{total_tests}"
                         # Display test results
                         st.subheader("Test Results")
                         for res in results:
@@ -175,6 +185,9 @@ def main():
                                 st.error(f"Error Message: {res['message']}")
                     else:
                         st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
+                # Display the test summary next to the Test button
+                if 'test_summary' in st.session_state and st.session_state.test_summary:
+                    st.markdown(f"**{st.session_state.test_summary}**")
 
             # Display the output in a terminal-like box
             st.subheader("Output")
@@ -202,10 +215,14 @@ def main():
 
         # Update session_state.code if code is not None
         if code is not None:
-            st.session_state.code = code
+            if code != st.session_state.get('code', ''):
+                st.session_state.code = code
+                st.session_state.test_summary = ''
+            else:
+                st.session_state.code = code
 
         # Create columns for the Run and Test buttons
-        button_col1, button_col2 = st.columns(2)
+        button_col1, button_col2 = st.columns([1, 2])
         with button_col1:
             if st.button('Run'):
                 # Map Ace Editor language to execution language
@@ -215,13 +232,19 @@ def main():
                 else:
                     st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
         with button_col2:
-            if st.button('Test'):
+            test_button = st.button('Test')
+            if test_button:
                 # Map Ace Editor language to execution language
                 exec_language = options.execution_languages.get(st.session_state.language, None)
                 if exec_language:
                     # Get test cases from the selected question
                     test_cases = selected_question.get('test_cases', [])
                     results = execute_code(st.session_state.code, exec_language, test_cases=test_cases)
+                    # Count passed test cases
+                    passed_tests = sum(1 for res in results if res['status'] == 'Passed')
+                    total_tests = len(results)
+                    # Store the test summary in session state
+                    st.session_state.test_summary = f"Tests Passed: {passed_tests}/{total_tests}"
                     # Display test results
                     st.subheader("Test Results")
                     for res in results:
@@ -235,6 +258,9 @@ def main():
                             st.error(f"Error Message: {res['message']}")
                 else:
                     st.session_state.output = f"Execution for {st.session_state.language} is not supported yet."
+            # Display the test summary next to the Test button
+            if 'test_summary' in st.session_state and st.session_state.test_summary:
+                st.markdown(f"**{st.session_state.test_summary}**")
 
         # Display the output in a terminal-like box
         st.subheader("Output")
