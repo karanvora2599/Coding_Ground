@@ -2,7 +2,7 @@
     "id": 7,
     "title": "Add Two Numbers",
     "difficulty": "Medium",
-    "description": "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.",
+    "description": "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list. You may assume the two numbers do not contain any leading zero, except the number 0 itself.",
     "examples": [
         {
             "input": "l1 = [2,4,3], l2 = [5,6,4]",
@@ -11,7 +11,13 @@
         },
         {
             "input": "l1 = [0], l2 = [0]",
-            "output": "[0]"
+            "output": "[0]",
+            "explanation": "0 + 0 = 0."
+        },
+        {
+            "input": "l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]",
+            "output": "[8,9,9,9,0,0,0,1]",
+            "explanation": "9999999 + 9999 = 10009998."
         }
     ],
     "constraints": [
@@ -20,8 +26,45 @@
         "It is guaranteed that the list represents a number without leading zeros."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef add_two_numbers(l1, l2):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "l1": [2, 4, 3],
+                "l2": [5, 6, 4]
+            },
+            "expected_output": [7, 0, 8]
+        },
+        {
+            "input": {
+                "l1": [0],
+                "l2": [0]
+            },
+            "expected_output": [0]
+        },
+        {
+            "input": {
+                "l1": [9, 9, 9],
+                "l2": [1]
+            },
+            "expected_output": [0, 0, 0, 1]
+        },
+        {
+            "input": {
+                "l1": [1, 8],
+                "l2": [0]
+            },
+            "expected_output": [1, 8]
+        },
+        {
+            "input": {
+                "l1": [9, 9, 9, 9, 9, 9, 9],
+                "l2": [9, 9, 9, 9]
+            },
+            "expected_output": [8, 9, 9, 9, 0, 0, 0, 1]
+        }
+    ]
 }

@@ -6,11 +6,18 @@
     "examples": [
         {
             "input": "list1 = [1,2,4], list2 = [1,3,4]",
-            "output": "[1,1,2,3,4,4]"
+            "output": "[1,1,2,3,4,4]",
+            "explanation": "The merged list combines all elements from both lists in sorted order."
         },
         {
             "input": "list1 = [], list2 = []",
-            "output": "[]"
+            "output": "[]",
+            "explanation": "Both lists are empty, so the merged list is also empty."
+        },
+        {
+            "input": "list1 = [], list2 = [0]",
+            "output": "[0]",
+            "explanation": "list1 is empty, so the merged list contains all elements from list2."
         }
     ],
     "constraints": [
@@ -19,8 +26,45 @@
         "Both `list1` and `list2` are sorted in non-decreasing order."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\ndef merge_two_lists(list1, list2):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "list1": [1, 2, 4],
+                "list2": [1, 3, 4]
+            },
+            "expected_output": [1, 1, 2, 3, 4, 4]
+        },
+        {
+            "input": {
+                "list1": [],
+                "list2": []
+            },
+            "expected_output": []
+        },
+        {
+            "input": {
+                "list1": [],
+                "list2": [0]
+            },
+            "expected_output": [0]
+        },
+        {
+            "input": {
+                "list1": [2, 5, 6],
+                "list2": [1, 3, 4]
+            },
+            "expected_output": [1, 2, 3, 4, 5, 6]
+        },
+        {
+            "input": {
+                "list1": [0, 3, 7],
+                "list2": [1, 2, 6]
+            },
+            "expected_output": [0, 1, 2, 3, 6, 7]
+        }
+    ]
 }

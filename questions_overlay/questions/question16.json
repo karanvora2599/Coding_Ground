@@ -2,7 +2,7 @@
     "id": 16,
     "title": "Find Peak Element",
     "difficulty": "Easy",
-    "description": "A peak element is an element that is strictly greater than its neighbors. Given an integer array `nums`, find a peak element, and return its index. If the array contains multiple peaks, return the index of any peak.",
+    "description": "A peak element is an element that is strictly greater than its neighbors. Given an integer array `nums`, find a peak element and return its index. If the array contains multiple peaks, return the index of any peak. A peak element is an element that satisfies the condition `nums[i] > nums[i-1]` (if it exists) and `nums[i] > nums[i+1]` (if it exists).",
     "examples": [
         {
             "input": "nums = [1,2,3,1]",
@@ -13,6 +13,11 @@
             "input": "nums = [1,2,1,3,5,6,4]",
             "output": "5",
             "explanation": "nums[5] = 6 is a peak element."
+        },
+        {
+            "input": "nums = [1]",
+            "output": "0",
+            "explanation": "With only one element, it is the peak by default."
         }
     ],
     "constraints": [
@@ -21,8 +26,46 @@
         "nums[i] != nums[i+1] for all valid i."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def find_peak_element(nums):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "nums": [1, 2, 3, 1]
+            },
+            "expected_output": 2
+        },
+        {
+            "input": {
+                "nums": [1, 2, 1, 3, 5, 6, 4]
+            },
+            "expected_output": 5
+        },
+        {
+            "input": {
+                "nums": [1]
+            },
+            "expected_output": 0
+        },
+        {
+            "input": {
+                "nums": [2, 1]
+            },
+            "expected_output": 0
+        },
+        {
+            "input": {
+                "nums": [1, 2]
+            },
+            "expected_output": 1
+        },
+        {
+            "input": {
+                "nums": [1, 3, 2, 1]
+            },
+            "expected_output": 1
+        }
+    ]
 }

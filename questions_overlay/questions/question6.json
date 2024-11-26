@@ -2,7 +2,7 @@
     "id": 6,
     "title": "Longest Substring Without Repeating Characters",
     "difficulty": "Medium",
-    "description": "Given a string `s`, find the length of the longest substring without repeating characters.",
+    "description": "Given a string `s`, find the length of the longest substring without repeating characters. A substring is a contiguous sequence of characters within a string.",
     "examples": [
         {
             "input": "s = 'abcabcbb'",
@@ -13,6 +13,11 @@
             "input": "s = 'bbbbb'",
             "output": "1",
             "explanation": "The answer is 'b', with the length of 1."
+        },
+        {
+            "input": "s = 'pwwkew'",
+            "output": "3",
+            "explanation": "The answer is 'wke', with the length of 3."
         }
     ],
     "constraints": [
@@ -20,8 +25,52 @@
         "s consists of English letters, digits, symbols, and spaces."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def length_of_longest_substring(s):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "s": "abcabcbb"
+            },
+            "expected_output": 3
+        },
+        {
+            "input": {
+                "s": "bbbbb"
+            },
+            "expected_output": 1
+        },
+        {
+            "input": {
+                "s": "pwwkew"
+            },
+            "expected_output": 3
+        },
+        {
+            "input": {
+                "s": ""
+            },
+            "expected_output": 0
+        },
+        {
+            "input": {
+                "s": "dvdf"
+            },
+            "expected_output": 3
+        },
+        {
+            "input": {
+                "s": "abcdef"
+            },
+            "expected_output": 6
+        },
+        {
+            "input": {
+                "s": "aabbcc"
+            },
+            "expected_output": 2
+        }
+    ]
 }

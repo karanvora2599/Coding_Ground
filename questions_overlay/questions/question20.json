@@ -2,17 +2,22 @@
     "id": 20,
     "title": "Container With Most Water",
     "difficulty": "Medium",
-    "description": "You are given an integer array `height` of length `n`. Find two lines that together with the x-axis form a container that holds the most water.",
+    "description": "You are given an integer array `height` of length `n`. Find two lines that together with the x-axis form a container that holds the most water. The amount of water a container can hold is determined by the shorter line and the distance between the two lines.",
     "examples": [
         {
             "input": "height = [1,8,6,2,5,4,8,3,7]",
             "output": "49",
-            "explanation": "The vertical lines at indices 1 and 8 form the container with maximum water."
+            "explanation": "The vertical lines at indices 1 and 8 form the container with maximum water. Area = min(height[1], height[8]) * (8 - 1) = 7 * 7 = 49."
         },
         {
             "input": "height = [1,1]",
             "output": "1",
-            "explanation": "The only possible container has an area of 1."
+            "explanation": "The only possible container is formed by the two lines at indices 0 and 1. Area = min(height[0], height[1]) * (1 - 0) = 1 * 1 = 1."
+        },
+        {
+            "input": "height = [4,3,2,1,4]",
+            "output": "16",
+            "explanation": "The container formed by lines at indices 0 and 4 holds the most water. Area = min(height[0], height[4]) * (4 - 0) = 4 * 4 = 16."
         }
     ],
     "constraints": [
@@ -21,8 +26,40 @@
         "0 <= height[i] <= 10^4"
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def max_area(height):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "height": [1, 8, 6, 2, 5, 4, 8, 3, 7]
+            },
+            "expected_output": 49
+        },
+        {
+            "input": {
+                "height": [1, 1]
+            },
+            "expected_output": 1
+        },
+        {
+            "input": {
+                "height": [4, 3, 2, 1, 4]
+            },
+            "expected_output": 16
+        },
+        {
+            "input": {
+                "height": [1, 2, 4, 3]
+            },
+            "expected_output": 4
+        },
+        {
+            "input": {
+                "height": [0, 2, 0]
+            },
+            "expected_output": 0
+        }
+    ]
 }

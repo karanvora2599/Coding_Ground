@@ -2,13 +2,21 @@
     "id": 9,
     "title": "Binary Search Tree Iterator",
     "difficulty": "Medium",
-    "description": "Implement the `BSTIterator` class that represents an iterator over the in-order traversal of a binary search tree (BST).",
+    "description": "Implement the `BSTIterator` class that represents an iterator over the in-order traversal of a binary search tree (BST). The iterator should support the following operations:\n1. `next()`: Returns the next smallest number in the BST.\n2. `hasNext()`: Returns `true` if there are still nodes left to iterate, otherwise `false`.",
     "examples": [
         {
             "input": "root = [7,3,15,null,null,9,20]",
             "operations": ["BSTIterator", "next", "next", "hasNext", "next", "hasNext", "next", "hasNext"],
             "parameters": [[], [], [], [], [], [], [], []],
-            "output": [null, 3, 7, true, 9, true, 15, true]
+            "output": [null, 3, 7, true, 9, true, 15, true],
+            "explanation": "The BSTIterator performs an in-order traversal. The sequence of values is [3, 7, 9, 15, 20]."
+        },
+        {
+            "input": "root = [2,1,3]",
+            "operations": ["BSTIterator", "next", "hasNext", "next", "hasNext", "next", "hasNext"],
+            "parameters": [[], [], [], [], [], [], []],
+            "output": [null, 1, true, 2, true, 3, false],
+            "explanation": "The BSTIterator performs an in-order traversal. The sequence of values is [1, 2, 3]."
         }
     ],
     "constraints": [
@@ -17,8 +25,50 @@
         "At most 10^5 calls will be made to `next()` and `hasNext()`."
     ],
     "starter_code": {
-        "python": "class BSTIterator:\n    def __init__(self, root):\n        pass\n\n    def next(self):\n        pass\n\n    def hasNext(self):\n        pass",
+        "python": "class BSTIterator:\n    def __init__(self, root):\n        # Write your initialization code here\n        pass\n\n    def next(self):\n        # Write your code here to return the next smallest number\n        pass\n\n    def hasNext(self):\n        # Write your code here to check if there are more nodes to iterate\n        pass",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "root": [7, 3, 15, null, null, 9, 20],
+                "operations": ["BSTIterator", "next", "next", "hasNext", "next", "hasNext", "next", "hasNext"],
+                "parameters": [[], [], [], [], [], [], [], []]
+            },
+            "expected_output": [null, 3, 7, true, 9, true, 15, true]
+        },
+        {
+            "input": {
+                "root": [2, 1, 3],
+                "operations": ["BSTIterator", "next", "hasNext", "next", "hasNext", "next", "hasNext"],
+                "parameters": [[], [], [], [], [], [], []]
+            },
+            "expected_output": [null, 1, true, 2, true, 3, false]
+        },
+        {
+            "input": {
+                "root": [5, 3, 7, 2, 4, 6, 8],
+                "operations": ["BSTIterator", "next", "next", "next", "next", "next", "hasNext", "next", "hasNext"],
+                "parameters": [[], [], [], [], [], [], [], [], []]
+            },
+            "expected_output": [null, 2, 3, 4, 5, 6, true, 7, true]
+        },
+        {
+            "input": {
+                "root": [1],
+                "operations": ["BSTIterator", "hasNext", "next", "hasNext"],
+                "parameters": [[], [], [], []]
+            },
+            "expected_output": [null, true, 1, false]
+        },
+        {
+            "input": {
+                "root": [8, 3, 10, 1, 6, null, 14, null, null, 4, 7, 13],
+                "operations": ["BSTIterator", "next", "next", "next", "next", "hasNext", "next", "hasNext", "next", "hasNext"],
+                "parameters": [[], [], [], [], [], [], [], [], [], []]
+            },
+            "expected_output": [null, 1, 3, 4, 6, true, 7, true, 8, true]
+        }
+    ]
 }

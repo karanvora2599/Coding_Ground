@@ -2,12 +2,17 @@
     "id": 15,
     "title": "Word Ladder II",
     "difficulty": "Hard",
-    "description": "Given two words, `beginWord` and `endWord`, and a dictionary of words `wordList`, return all the shortest transformation sequences from `beginWord` to `endWord`.",
+    "description": "Given two words, `beginWord` and `endWord`, and a dictionary of words `wordList`, return all the shortest transformation sequences from `beginWord` to `endWord`. Each transformation must change exactly one letter, and each transformed word must exist in the word list. Note that `beginWord` is not a part of `wordList`.",
     "examples": [
         {
             "input": "beginWord = 'hit', endWord = 'cog', wordList = ['hot','dot','dog','lot','log','cog']",
             "output": "[['hit','hot','dot','dog','cog'], ['hit','hot','lot','log','cog']]",
-            "explanation": "Both sequences are the shortest."
+            "explanation": "Both sequences are the shortest transformations."
+        },
+        {
+            "input": "beginWord = 'hit', endWord = 'cog', wordList = ['hot','dot','dog','lot','log']",
+            "output": "[]",
+            "explanation": "The endWord 'cog' is not reachable from the given wordList."
         }
     ],
     "constraints": [
@@ -18,8 +23,56 @@
         "All strings in wordList are unique."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def find_ladders(beginWord, endWord, wordList):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "beginWord": "hit",
+                "endWord": "cog",
+                "wordList": ["hot", "dot", "dog", "lot", "log", "cog"]
+            },
+            "expected_output": [
+                ["hit", "hot", "dot", "dog", "cog"],
+                ["hit", "hot", "lot", "log", "cog"]
+            ]
+        },
+        {
+            "input": {
+                "beginWord": "hit",
+                "endWord": "cog",
+                "wordList": ["hot", "dot", "dog", "lot", "log"]
+            },
+            "expected_output": []
+        },
+        {
+            "input": {
+                "beginWord": "a",
+                "endWord": "c",
+                "wordList": ["a", "b", "c"]
+            },
+            "expected_output": [["a", "c"]]
+        },
+        {
+            "input": {
+                "beginWord": "aaa",
+                "endWord": "ccc",
+                "wordList": ["aaa", "aab", "abb", "bbb", "bbc", "bcc", "ccc"]
+            },
+            "expected_output": [["aaa", "aab", "abb", "bbb", "bbc", "bcc", "ccc"]]
+        },
+        {
+            "input": {
+                "beginWord": "hit",
+                "endWord": "cog",
+                "wordList": ["hot", "dot", "lot", "log", "dog", "cog"]
+            },
+            "expected_output": [
+                ["hit", "hot", "dot", "dog", "cog"],
+                ["hit", "hot", "lot", "log", "cog"]
+            ]
+        }
+    ]
 }

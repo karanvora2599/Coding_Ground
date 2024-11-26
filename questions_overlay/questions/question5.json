@@ -2,7 +2,7 @@
     "id": 5,
     "title": "Remove Duplicates from Sorted Array",
     "difficulty": "Easy",
-    "description": "Given an integer array `nums` sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. Return the new length of the array.",
+    "description": "Given an integer array `nums` sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. Return the new length of the array. Do not allocate extra space for another array; you must do this by modifying the input array in-place with O(1) extra memory.",
     "examples": [
         {
             "input": "nums = [1,1,2]",
@@ -21,8 +21,40 @@
         "nums is sorted in non-decreasing order."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def remove_duplicates(nums):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "nums": [1, 1, 2]
+            },
+            "expected_output": 2
+        },
+        {
+            "input": {
+                "nums": [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
+            },
+            "expected_output": 5
+        },
+        {
+            "input": {
+                "nums": [1, 1, 1, 1]
+            },
+            "expected_output": 1
+        },
+        {
+            "input": {
+                "nums": [1, 2, 3, 4, 5]
+            },
+            "expected_output": 5
+        },
+        {
+            "input": {
+                "nums": [1]
+            },
+            "expected_output": 1
+        }
+    ]
 }

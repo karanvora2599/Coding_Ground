@@ -2,19 +2,22 @@
     "id": 8,
     "title": "3Sum",
     "difficulty": "Medium",
-    "description": "Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`. Notice that the solution set must not contain duplicate triplets.",
+    "description": "Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`. Notice that the solution set must not contain duplicate triplets. The order of the triplets within the output does not matter, but the elements within each triplet must be in ascending order.",
     "examples": [
         {
             "input": "nums = [-1,0,1,2,-1,-4]",
-            "output": "[[-1,-1,2],[-1,0,1]]"
+            "output": "[[-1,-1,2],[-1,0,1]]",
+            "explanation": "The two triplets [-1, -1, 2] and [-1, 0, 1] sum to 0."
         },
         {
             "input": "nums = []",
-            "output": "[]"
+            "output": "[]",
+            "explanation": "An empty array has no triplets."
         },
         {
             "input": "nums = [0]",
-            "output": "[]"
+            "output": "[]",
+            "explanation": "A single element cannot form a triplet."
         }
     ],
     "constraints": [
@@ -22,8 +25,46 @@
         "-10^5 <= nums[i] <= 10^5"
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def three_sum(nums):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "nums": [-1, 0, 1, 2, -1, -4]
+            },
+            "expected_output": [[-1, -1, 2], [-1, 0, 1]]
+        },
+        {
+            "input": {
+                "nums": []
+            },
+            "expected_output": []
+        },
+        {
+            "input": {
+                "nums": [0]
+            },
+            "expected_output": []
+        },
+        {
+            "input": {
+                "nums": [0, 0, 0]
+            },
+            "expected_output": [[0, 0, 0]]
+        },
+        {
+            "input": {
+                "nums": [-2, 0, 1, 1, 2]
+            },
+            "expected_output": [[-2, 0, 2], [-2, 1, 1]]
+        },
+        {
+            "input": {
+                "nums": [-4, -2, -2, -2, 0, 1, 2, 2, 2, 3, 3, 4, 6, 6]
+            },
+            "expected_output": [[-4, -2, 6], [-4, 0, 4], [-4, 1, 3], [-4, 2, 2], [-2, -2, 4], [-2, 0, 2]]
+        }
+    ]
 }

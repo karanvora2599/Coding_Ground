@@ -2,17 +2,22 @@
     "id": 18,
     "title": "Rotate Array",
     "difficulty": "Medium",
-    "description": "Given an array, rotate the array to the right by `k` steps, where `k` is non-negative.",
+    "description": "Given an array, rotate the array to the right by `k` steps, where `k` is non-negative. The rotation means that the elements of the array are shifted to the right by `k` positions, and the elements that fall off are wrapped around to the beginning.",
     "examples": [
         {
             "input": "nums = [1,2,3,4,5,6,7], k = 3",
             "output": "[5,6,7,1,2,3,4]",
-            "explanation": "Array is rotated by 3 steps to the right."
+            "explanation": "Array is rotated by 3 steps to the right. The last 3 elements [5,6,7] move to the front."
         },
         {
             "input": "nums = [-1,-100,3,99], k = 2",
             "output": "[3,99,-1,-100]",
-            "explanation": "Array is rotated by 2 steps to the right."
+            "explanation": "Array is rotated by 2 steps to the right. The last 2 elements [3,99] move to the front."
+        },
+        {
+            "input": "nums = [1,2], k = 3",
+            "output": "[2,1]",
+            "explanation": "Rotating by `k = 3` is equivalent to rotating by `k = 1` (as 3 % 2 = 1)."
         }
     ],
     "constraints": [
@@ -21,8 +26,52 @@
         "0 <= k <= 10^5"
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def rotate(nums, k):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "nums": [1, 2, 3, 4, 5, 6, 7],
+                "k": 3
+            },
+            "expected_output": [5, 6, 7, 1, 2, 3, 4]
+        },
+        {
+            "input": {
+                "nums": [-1, -100, 3, 99],
+                "k": 2
+            },
+            "expected_output": [3, 99, -1, -100]
+        },
+        {
+            "input": {
+                "nums": [1, 2],
+                "k": 3
+            },
+            "expected_output": [2, 1]
+        },
+        {
+            "input": {
+                "nums": [1],
+                "k": 0
+            },
+            "expected_output": [1]
+        },
+        {
+            "input": {
+                "nums": [1],
+                "k": 1000
+            },
+            "expected_output": [1]
+        },
+        {
+            "input": {
+                "nums": [1, 2, 3],
+                "k": 3
+            },
+            "expected_output": [1, 2, 3]
+        }
+    ]
 }

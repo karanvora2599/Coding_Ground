@@ -2,7 +2,7 @@
     "id": 11,
     "title": "Median of Two Sorted Arrays",
     "difficulty": "Hard",
-    "description": "Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return the median of the two sorted arrays.",
+    "description": "Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).",
     "examples": [
         {
             "input": "nums1 = [1,3], nums2 = [2]",
@@ -13,6 +13,11 @@
             "input": "nums1 = [1,2], nums2 = [3,4]",
             "output": "2.5",
             "explanation": "The merged array is [1,2,3,4] and the median is (2 + 3)/2 = 2.5."
+        },
+        {
+            "input": "nums1 = [0,0], nums2 = [0,0]",
+            "output": "0.0",
+            "explanation": "The merged array is [0,0,0,0] and the median is 0."
         }
     ],
     "constraints": [
@@ -22,8 +27,52 @@
         "-10^6 <= nums1[i], nums2[i] <= 10^6"
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def find_median_sorted_arrays(nums1, nums2):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "nums1": [1, 3],
+                "nums2": [2]
+            },
+            "expected_output": 2.0
+        },
+        {
+            "input": {
+                "nums1": [1, 2],
+                "nums2": [3, 4]
+            },
+            "expected_output": 2.5
+        },
+        {
+            "input": {
+                "nums1": [0, 0],
+                "nums2": [0, 0]
+            },
+            "expected_output": 0.0
+        },
+        {
+            "input": {
+                "nums1": [],
+                "nums2": [1]
+            },
+            "expected_output": 1.0
+        },
+        {
+            "input": {
+                "nums1": [2],
+                "nums2": []
+            },
+            "expected_output": 2.0
+        },
+        {
+            "input": {
+                "nums1": [1, 2, 3],
+                "nums2": [4, 5, 6]
+            },
+            "expected_output": 3.5
+        }
+    ]
 }

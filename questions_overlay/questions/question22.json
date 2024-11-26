@@ -2,17 +2,22 @@
     "id": 22,
     "title": "Longest Palindromic Substring",
     "difficulty": "Hard",
-    "description": "Given a string `s`, return the longest palindromic substring in `s`.",
+    "description": "Given a string `s`, return the longest palindromic substring in `s`. A palindrome is a string that reads the same backward as forward. If there are multiple solutions, return any one of them.",
     "examples": [
         {
             "input": "s = 'babad'",
             "output": "'bab'",
-            "explanation": "'aba' is also a valid answer."
+            "explanation": "'aba' is also a valid answer as both are palindromic substrings of maximum length."
         },
         {
             "input": "s = 'cbbd'",
             "output": "'bb'",
             "explanation": "'bb' is the longest palindromic substring."
+        },
+        {
+            "input": "s = 'a'",
+            "output": "'a'",
+            "explanation": "The entire string is a palindrome."
         }
     ],
     "constraints": [
@@ -20,8 +25,46 @@
         "s consists of only digits and English letters."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def longest_palindromic_substring(s):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "s": "babad"
+            },
+            "expected_output": "bab"
+        },
+        {
+            "input": {
+                "s": "cbbd"
+            },
+            "expected_output": "bb"
+        },
+        {
+            "input": {
+                "s": "a"
+            },
+            "expected_output": "a"
+        },
+        {
+            "input": {
+                "s": "ac"
+            },
+            "expected_output": "a"
+        },
+        {
+            "input": {
+                "s": "racecar"
+            },
+            "expected_output": "racecar"
+        },
+        {
+            "input": {
+                "s": "aaaabaaa"
+            },
+            "expected_output": "aaabaaa"
+        }
+    ]
 }

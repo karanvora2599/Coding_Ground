@@ -2,12 +2,22 @@
     "id": 14,
     "title": "Maximal Rectangle",
     "difficulty": "Hard",
-    "description": "Given a binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.",
+    "description": "Given a binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area. The rectangle must be contiguous.",
     "examples": [
         {
             "input": "matrix = [[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]",
             "output": "6",
             "explanation": "The largest rectangle containing only 1's is shown in the last two rows and columns 2 to 4."
+        },
+        {
+            "input": "matrix = [[\"0\"]]",
+            "output": "0",
+            "explanation": "There are no 1's in the matrix."
+        },
+        {
+            "input": "matrix = [[\"1\"]]",
+            "output": "1",
+            "explanation": "The single cell with 1 forms the largest rectangle."
         }
     ],
     "constraints": [
@@ -17,8 +27,62 @@
         "matrix[i][j] is '0' or '1'."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def maximal_rectangle(matrix):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "matrix": [
+                    ["1", "0", "1", "0", "0"],
+                    ["1", "0", "1", "1", "1"],
+                    ["1", "1", "1", "1", "1"],
+                    ["1", "0", "0", "1", "0"]
+                ]
+            },
+            "expected_output": 6
+        },
+        {
+            "input": {
+                "matrix": [["0"]]
+            },
+            "expected_output": 0
+        },
+        {
+            "input": {
+                "matrix": [["1"]]
+            },
+            "expected_output": 1
+        },
+        {
+            "input": {
+                "matrix": [
+                    ["0", "1", "1", "0"],
+                    ["1", "1", "1", "1"],
+                    ["0", "1", "1", "1"]
+                ]
+            },
+            "expected_output": 6
+        },
+        {
+            "input": {
+                "matrix": [
+                    ["1", "1", "1", "1"],
+                    ["1", "1", "1", "1"]
+                ]
+            },
+            "expected_output": 8
+        },
+        {
+            "input": {
+                "matrix": [
+                    ["1", "0", "1", "0"],
+                    ["0", "1", "1", "1"],
+                    ["1", "1", "1", "0"]
+                ]
+            },
+            "expected_output": 4
+        }
+    ]
 }

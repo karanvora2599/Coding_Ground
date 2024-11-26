@@ -2,7 +2,7 @@
     "id": 13,
     "title": "Regular Expression Matching",
     "difficulty": "Hard",
-    "description": "Given an input string `s` and a pattern `p`, implement regular expression matching with support for `.` and `*`.",
+    "description": "Given an input string `s` and a pattern `p`, implement regular expression matching with support for `.` and `*`.\n\n- `.` Matches any single character.\n- `*` Matches zero or more of the preceding element.\n\nThe matching should cover the entire input string (not partial).",
     "examples": [
         {
             "input": "s = 'aa', p = 'a*'",
@@ -11,7 +11,18 @@
         },
         {
             "input": "s = 'mississippi', p = 'mis*is*p*.'",
-            "output": "false"
+            "output": "false",
+            "explanation": "The pattern does not match the string."
+        },
+        {
+            "input": "s = 'ab', p = '.*'",
+            "output": "true",
+            "explanation": "'.*' matches zero or more of any character."
+        },
+        {
+            "input": "s = 'aab', p = 'c*a*b'",
+            "output": "true",
+            "explanation": "'c*' matches zero 'c's, and 'a*b' matches the entire string 'aab'."
         }
     ],
     "constraints": [
@@ -21,8 +32,66 @@
         "p contains only lowercase English letters, '.', and '*'."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def is_match(s, p):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "s": "aa",
+                "p": "a*"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "mississippi",
+                "p": "mis*is*p*."
+            },
+            "expected_output": false
+        },
+        {
+            "input": {
+                "s": "ab",
+                "p": ".*"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "aab",
+                "p": "c*a*b"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "aaa",
+                "p": "a*a"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "aaa",
+                "p": "ab*a*c*a"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "mississippi",
+                "p": "mis*is*ip*."
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "ab",
+                "p": ".*c"
+            },
+            "expected_output": false
+        }
+    ]
 }

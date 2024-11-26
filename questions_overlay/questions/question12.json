@@ -2,19 +2,65 @@
     "id": 12,
     "title": "N-Queens",
     "difficulty": "Hard",
-    "description": "The `n`-queens puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other. Given an integer `n`, return all distinct solutions to the `n`-queens puzzle.",
+    "description": "The `n`-queens puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other. Given an integer `n`, return all distinct solutions to the `n`-queens puzzle. Each solution contains a distinct board configuration of the placement of the queens, where `'Q'` and `'.'` represent a queen and an empty space, respectively.",
     "examples": [
         {
             "input": "n = 4",
-            "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]"
+            "output": "[[\".Q..\",\"...Q\",\"Q...\",\"..Q.\"],[\"..Q.\",\"Q...\",\"...Q\",\".Q..\"]]",
+            "explanation": "There are two distinct solutions for a 4x4 chessboard."
+        },
+        {
+            "input": "n = 1",
+            "output": "[[\"Q\"]]",
+            "explanation": "There is only one solution for a 1x1 chessboard."
         }
     ],
     "constraints": [
         "1 <= n <= 9"
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def solve_n_queens(n):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "n": 4
+            },
+            "expected_output": [
+                [".Q..", "...Q", "Q...", "..Q."],
+                ["..Q.", "Q...", "...Q", ".Q.."]
+            ]
+        },
+        {
+            "input": {
+                "n": 1
+            },
+            "expected_output": [
+                ["Q"]
+            ]
+        },
+        {
+            "input": {
+                "n": 5
+            },
+            "expected_output": [
+                [".Q...", "...Q.", "Q....", "..Q..", "....Q"],
+                ["..Q..", "Q....", "....Q", ".Q...", "...Q."]
+            ]
+        },
+        {
+            "input": {
+                "n": 3
+            },
+            "expected_output": []
+        },
+        {
+            "input": {
+                "n": 2
+            },
+            "expected_output": []
+        }
+    ]
 }

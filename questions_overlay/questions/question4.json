@@ -2,15 +2,22 @@
     "id": 4,
     "title": "Valid Parentheses",
     "difficulty": "Easy",
-    "description": "Given a string `s` containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.",
+    "description": "Given a string `s` containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. A string is valid if: \n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.",
     "examples": [
         {
             "input": "s = '()'",
-            "output": "true"
+            "output": "true",
+            "explanation": "The string contains one pair of valid parentheses."
         },
         {
             "input": "s = '([)]'",
-            "output": "false"
+            "output": "false",
+            "explanation": "The brackets are not closed in the correct order."
+        },
+        {
+            "input": "s = '{[]}'",
+            "output": "true",
+            "explanation": "The string contains nested valid brackets."
         }
     ],
     "constraints": [
@@ -18,8 +25,52 @@
         "s consists of parentheses only '()[]{}'."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def is_valid(s):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "s": "()"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "([)]"
+            },
+            "expected_output": false
+        },
+        {
+            "input": {
+                "s": "{[]}"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "(([]){})"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "([{}])"
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "s": "(("
+            },
+            "expected_output": false
+        },
+        {
+            "input": {
+                "s": ")("
+            },
+            "expected_output": false
+        }
+    ]
 }

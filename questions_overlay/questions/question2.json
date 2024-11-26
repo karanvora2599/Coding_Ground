@@ -13,14 +13,51 @@
             "input": "x = -121",
             "output": "false",
             "explanation": "From left to right, it reads -121. From right to left, it becomes 121-. Therefore, it is not a palindrome."
+        },
+        {
+            "input": "x = 10",
+            "output": "false",
+            "explanation": "Reads 10 from left to right, but 01 from right to left."
         }
     ],
     "constraints": [
         "-2^31 <= x <= 2^31 - 1"
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def is_palindrome(x):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "x": 121
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "x": -121
+            },
+            "expected_output": false
+        },
+        {
+            "input": {
+                "x": 10
+            },
+            "expected_output": false
+        },
+        {
+            "input": {
+                "x": 0
+            },
+            "expected_output": true
+        },
+        {
+            "input": {
+                "x": 12321
+            },
+            "expected_output": true
+        }
+    ]
 }

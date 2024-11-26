@@ -2,7 +2,7 @@
     "id": 23,
     "title": "Edit Distance",
     "difficulty": "Hard",
-    "description": "Given two strings `word1` and `word2`, return the minimum number of operations required to convert `word1` to `word2`.",
+    "description": "Given two strings `word1` and `word2`, return the minimum number of operations required to convert `word1` to `word2`. You are allowed to perform the following three operations on a string:\n1. Insert a character\n2. Delete a character\n3. Replace a character",
     "examples": [
         {
             "input": "word1 = 'horse', word2 = 'ros'",
@@ -11,7 +11,8 @@
         },
         {
             "input": "word1 = 'intention', word2 = 'execution'",
-            "output": "5"
+            "output": "5",
+            "explanation": "intention -> inention (remove 't') -> enention (replace 'i' with 'e') -> exention (replace 'n' with 'x') -> exection (replace 'n' with 'c') -> execution (insert 'u')."
         }
     ],
     "constraints": [
@@ -19,8 +20,52 @@
         "word1 and word2 consist of lowercase English letters."
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def min_distance(word1, word2):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "word1": "horse",
+                "word2": "ros"
+            },
+            "expected_output": 3
+        },
+        {
+            "input": {
+                "word1": "intention",
+                "word2": "execution"
+            },
+            "expected_output": 5
+        },
+        {
+            "input": {
+                "word1": "abc",
+                "word2": "yabd"
+            },
+            "expected_output": 2
+        },
+        {
+            "input": {
+                "word1": "kitten",
+                "word2": "sitting"
+            },
+            "expected_output": 3
+        },
+        {
+            "input": {
+                "word1": "a",
+                "word2": "b"
+            },
+            "expected_output": 1
+        },
+        {
+            "input": {
+                "word1": "",
+                "word2": "abc"
+            },
+            "expected_output": 3
+        }
+    ]
 }

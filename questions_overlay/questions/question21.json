@@ -2,7 +2,7 @@
     "id": 21,
     "title": "Maximum Subarray",
     "difficulty": "Medium",
-    "description": "Given an integer array `nums`, find the subarray with the largest sum, and return its sum.",
+    "description": "Given an integer array `nums`, find the contiguous subarray (containing at least one number) which has the largest sum, and return its sum.",
     "examples": [
         {
             "input": "nums = [-2,1,-3,4,-1,2,1,-5,4]",
@@ -13,6 +13,11 @@
             "input": "nums = [1]",
             "output": "1",
             "explanation": "The subarray [1] is the largest subarray."
+        },
+        {
+            "input": "nums = [5,4,-1,7,8]",
+            "output": "23",
+            "explanation": "The entire array has the largest sum = 23."
         }
     ],
     "constraints": [
@@ -20,8 +25,40 @@
         "-10^4 <= nums[i] <= 10^4"
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def max_subarray(nums):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "nums": [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+            },
+            "expected_output": 6
+        },
+        {
+            "input": {
+                "nums": [1]
+            },
+            "expected_output": 1
+        },
+        {
+            "input": {
+                "nums": [5, 4, -1, 7, 8]
+            },
+            "expected_output": 23
+        },
+        {
+            "input": {
+                "nums": [-1, -2, -3, -4]
+            },
+            "expected_output": -1
+        },
+        {
+            "input": {
+                "nums": [0, -1, -2, -3]
+            },
+            "expected_output": 0
+        }
+    ]
 }

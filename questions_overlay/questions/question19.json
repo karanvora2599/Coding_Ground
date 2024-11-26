@@ -2,7 +2,7 @@
     "id": 19,
     "title": "Unique Paths",
     "difficulty": "Medium",
-    "description": "A robot is located at the top-left corner of an `m x n` grid. The robot can only move either down or right at any point. Calculate how many unique paths exist to reach the bottom-right corner.",
+    "description": "A robot is located at the top-left corner of an `m x n` grid. The robot can only move either down or right at any point in time. Calculate how many unique paths exist to reach the bottom-right corner. The robot starts at `(1, 1)` and the bottom-right corner is `(m, n)`.",
     "examples": [
         {
             "input": "m = 3, n = 7",
@@ -12,15 +12,64 @@
         {
             "input": "m = 3, n = 2",
             "output": "3",
-            "explanation": "There are 3 unique paths."
+            "explanation": "There are 3 unique paths:\n1. Down -> Down -> Right\n2. Down -> Right -> Down\n3. Right -> Down -> Down."
+        },
+        {
+            "input": "m = 1, n = 1",
+            "output": "1",
+            "explanation": "There is only one cell, so only one path exists."
         }
     ],
     "constraints": [
         "1 <= m, n <= 100"
     ],
     "starter_code": {
-        "python": "# Write your code here",
+        "python": "def unique_paths(m, n):\n    # Write your code here",
         "c_cpp": "// Write your code here",
         "java": "// Write your code here"
-    }
+    },
+    "test_cases": [
+        {
+            "input": {
+                "m": 3,
+                "n": 7
+            },
+            "expected_output": 28
+        },
+        {
+            "input": {
+                "m": 3,
+                "n": 2
+            },
+            "expected_output": 3
+        },
+        {
+            "input": {
+                "m": 1,
+                "n": 1
+            },
+            "expected_output": 1
+        },
+        {
+            "input": {
+                "m": 2,
+                "n": 2
+            },
+            "expected_output": 2
+        },
+        {
+            "input": {
+                "m": 10,
+                "n": 10
+            },
+            "expected_output": 48620
+        },
+        {
+            "input": {
+                "m": 5,
+                "n": 5
+            },
+            "expected_output": 70
+        }
+    ]
 }
