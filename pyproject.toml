@@ -1,0 +1,11 @@
+[project]
+name = "coding-ground"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit>=1.40.2",
+    "streamlit-code-editor>=0.1.21",
+    "streamlit-ace>=0.1.1",
+]

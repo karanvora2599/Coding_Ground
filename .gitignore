@@ -1,2 +1,4 @@
 __pycache__
 executor/__pycache__
+.venv
+uv.lock
